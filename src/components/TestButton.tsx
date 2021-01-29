@@ -1,9 +1,5 @@
 import React, { useContext } from "react";
-import {
-  GameScreenCtx,
-  GameScreen,
-  GameScreenContextInterface,
-} from "../context/GameScreenContext";
+import { GameScreenCtx } from "../context/GameScreenContext";
 
 export const TestButton = () => {
   const { updateScreen } = useContext(GameScreenCtx);

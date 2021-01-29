@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { GameScreenCtx, GameScreen, GameScreenContextInterface } from './context/GameScreenContext';
+import { TestButton } from './components/TestButton';
 
 const defaultScreen: GameScreen = 'intro';
 
@@ -12,7 +13,7 @@ function App() {
     <div className="App">
       {screen}
       <GameScreenCtx.Provider value={screenState}>
-
+        <TestButton />
       </GameScreenCtx.Provider>
     </div>
   );

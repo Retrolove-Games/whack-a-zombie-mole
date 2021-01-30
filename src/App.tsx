@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 // import { GameScreenCtx, GameScreen, GameScreenContextInterface } from './context/GameScreenContext';
-import { initialState, reducer, GameStateInterface } from './context/GameState';
+import { initialState, reducer, GameStateInterface } from './GameState';
 import { TestButton } from './components/TestButton';
 import { GameCtx } from './context/GameContext';
 

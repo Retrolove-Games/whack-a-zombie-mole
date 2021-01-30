@@ -1,5 +1,5 @@
 import React, { Dispatch } from "react";
-import { ReducerAction, GameStateInterface } from './GameState';
+import { ReducerAction, GameStateInterface } from '../GameState';
 
 export interface Ctx {
   state: GameStateInterface,

@@ -31,7 +31,7 @@ export function reducer(state: GameStateInterface, action: ReducerAction) {
     case "INCREMENT_POINTS":
       return {
         ...state,
-        points: state.points ? state.points + 1 : 1
+        points: state.points + action.points
       }
     // CHANGE_SCREEN
     case "CHANGE_SCREEN":

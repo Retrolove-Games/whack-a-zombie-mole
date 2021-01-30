@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-// import { GameScreenCtx, GameScreen, GameScreenContextInterface } from './context/GameScreenContext';
 import { initialState, reducer, GameStateInterface } from './GameState';
 import { TestButton } from './components/TestButton';
 import { GameCtx } from './context/GameContext';
@@ -12,7 +11,9 @@ function App() {
       <GameCtx.Provider value={{state, dispatch}}>
         <TestButton />
       </GameCtx.Provider>
-      {state.screen}
+      <div>{state.screen}</div>
+      <div>{state.points}</div>
+      <div>{state.nickname}</div>
     </div>
   );
 }

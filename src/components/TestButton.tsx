@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { GameScreenCtx } from "../context/GameScreenContext";
+import { GameCtx } from "../context/GameContext";
 
 export const TestButton = () => {
-  const { updateScreen } = useContext(GameScreenCtx);
+  const { dispatch, state } = useContext(GameCtx);
 
-  return <button onClick={() => updateScreen("menu")}>Change screen</button>;
+  return <button onClick={() => dispatch({ type: 'CHANGE_SCREEN', screen: 'menu' })}>{state.screen}</button>;
 };

@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
-import { GameScreenCtx, GameScreen, GameScreenContextInterface } from './context/GameScreenContext';
+import React, { useReducer } from 'react';
+// import { GameScreenCtx, GameScreen, GameScreenContextInterface } from './context/GameScreenContext';
+import { initialState, reducer, GameStateInterface } from './context/GameState';
 import { TestButton } from './components/TestButton';
-
-const defaultScreen: GameScreen = 'intro';
+import { GameCtx } from './context/GameContext';
 
 function App() {
-  // Which screen is used
-  const [ screen, updateScreen ] = useState(defaultScreen);
-  const screenState: GameScreenContextInterface  = { screen, updateScreen };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div className="App">
-      {screen}
-      <GameScreenCtx.Provider value={screenState}>
+      <GameCtx.Provider value={{state, dispatch}}>
         <TestButton />
-      </GameScreenCtx.Provider>
+      </GameCtx.Provider>
+      {state.screen}
     </div>
   );
 }

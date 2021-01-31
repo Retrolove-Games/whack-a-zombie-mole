@@ -5,6 +5,10 @@
 
 Game written in `React` to train up some skills.
 
+## Component structure
+
+![Component structure](draw-a-zombie-mole.png)
+
 ## Available Scripts
 
 In the project directory, you can run:

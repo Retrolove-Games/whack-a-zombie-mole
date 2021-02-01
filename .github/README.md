@@ -9,6 +9,20 @@ Game written in `React` to train up some skills.
 
 ![Component structure](draw-a-zombie-mole.png)
 
+---
+
+## Technology
+
+### Sound engine
+
+I've used a very simple wave generator written in JS. Check its documentation [here](https://github.com/grumdrig/jsfxr) and test it using a [demo](http://github.grumdrig.com/jsfxr/).
+
+### Game egine
+
+The whole game is written in `React` and it's typed using `Typescript`.
+
+---
+
 ## Available Scripts
 
 In the project directory, you can run:

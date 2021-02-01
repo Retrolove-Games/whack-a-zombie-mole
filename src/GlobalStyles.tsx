@@ -7,5 +7,7 @@ export const GlobalStyles = createGlobalStyle`
     --color-text: white;
     --color-background: black;
     --color-primary: rebeccapurple;
+    --native-width: 320px;
+    --native-height: 210px;
   }
 `;

@@ -1,9 +1,10 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
+import styled from 'styled-components/macro';
 import { initialState, reducer } from './GameState';
 import { TestButton } from './components/TestButton';
 import { GameCtx } from './context/GameContext';
-import { GlobalStyles } from './GlobalStyles';
-import styled from 'styled-components/macro';
+import { Intro } from './views/Intro';
+
 
 // Atari 2600 emulation wrapper
 const Wrapper = styled.div`
@@ -15,11 +16,23 @@ const Wrapper = styled.div`
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [view, setView] = useState(<></>);
+
+  // Pseudo routing
+  useEffect(() => {
+    switch(state.screen) {
+      case 'intro':
+        setView(<Intro />);
+        break;
+      case 'menu':
+        setView(<div>Menu</div>);
+    }
+  });
 
   return (
     <Wrapper className="App">
-      <GlobalStyles />
       <GameCtx.Provider value={{state, dispatch}}>
+        {view}
         <TestButton />
       </GameCtx.Provider>
       <div>{state.screen}</div>

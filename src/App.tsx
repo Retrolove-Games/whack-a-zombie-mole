@@ -33,11 +33,7 @@ function App() {
     <Wrapper className="App">
       <GameCtx.Provider value={{state, dispatch}}>
         {view}
-        <TestButton />
       </GameCtx.Provider>
-      <div>{state.screen}</div>
-      <div>{state.points}</div>
-      <div>{state.nickname}</div>
     </Wrapper>
   );
 }

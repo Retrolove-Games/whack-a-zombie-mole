@@ -1,9 +1,10 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { initialState, reducer } from './GameState';
-import { TestButton } from './components/TestButton';
 import { GameCtx } from './context/GameContext';
+import { SfxCtx } from './context/SfxContext';
 import { Intro } from './views/Intro';
+import SFX from './sfx/SFX';
 
 
 // Atari 2600 emulation wrapper
@@ -14,6 +15,8 @@ const Wrapper = styled.div`
   color: var(--color-text);
 `;
 
+const sfxEngine = new SFX();
+
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [view, setView] = useState(<></>);
@@ -22,18 +25,20 @@ function App() {
   useEffect(() => {
     switch(state.screen) {
       case 'intro':
-        setView(<Intro />);
+        setView(<Intro  />);
         break;
       case 'menu':
         setView(<div>Menu</div>);
     }
-  });
+  }, [state.screen]);
 
   return (
     <Wrapper className="App">
-      <GameCtx.Provider value={{state, dispatch}}>
-        {view}
-      </GameCtx.Provider>
+      <SfxCtx.Provider value={sfxEngine}>
+        <GameCtx.Provider value={{state, dispatch}}>
+          {view}
+        </GameCtx.Provider>
+      </SfxCtx.Provider>
     </Wrapper>
   );
 }

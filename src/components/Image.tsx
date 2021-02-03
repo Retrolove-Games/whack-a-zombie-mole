@@ -8,7 +8,7 @@ const PixelPerfect = styled.img`
 `;
 
 export const Image = (props: React.HTMLProps<HTMLImageElement>) => {
-  const {width, height, src, alt} = props;
+  const {width, height, src, alt, style} = props;
 
-  return <PixelPerfect width={width} height={height} src={src} alt={alt} />;
+  return <PixelPerfect width={width} height={height} src={src} alt={alt} style={style} />;
 }

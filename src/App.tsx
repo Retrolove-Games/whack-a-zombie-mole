@@ -4,6 +4,7 @@ import { initialState, reducer } from './GameState';
 import { GameCtx } from './context/GameContext';
 import { SfxCtx } from './context/SfxContext';
 import { Intro } from './views/Intro';
+import { Menu } from './views/Menu';
 import SFX from './sfx/SFX';
 
 
@@ -25,10 +26,10 @@ function App() {
   useEffect(() => {
     switch(state.screen) {
       case 'intro':
-        setView(<Intro  />);
+        setView(<Intro />);
         break;
       case 'menu':
-        setView(<div>Menu</div>);
+        setView(<Menu />);
     }
   }, [state.screen]);
 

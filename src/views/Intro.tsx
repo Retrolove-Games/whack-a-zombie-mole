@@ -27,7 +27,9 @@ export const Intro = () => {
     config: { easing: easings.easeCubic, duration: 1500 },
     onRest: () => {
       sfxEngine.testAlert();
-      dispatch({ type: 'CHANGE_SCREEN', screen: 'menu' });
+      setTimeout(() => {
+        dispatch({ type: 'CHANGE_SCREEN', screen: 'menu' });
+      }, 1000);
     }
   });
 

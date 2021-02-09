@@ -24,8 +24,8 @@ export default createGlobalStyle`
     font-size: 10px;
     text-rendering: optimizeSpeed;
 
-    // Vars
-    --color-text: white;
+    // Config vars
+    --color-text: #efefef;
     --color-background: black;
     --color-primary: rebeccapurple;
     --native-width: 320px;

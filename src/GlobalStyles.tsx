@@ -21,7 +21,7 @@ export default createGlobalStyle`
   html {
     ${reset}
     font-family: 'Atari Classic Chunky';
-    font-size: 10px;
+    font-size: 8px;
     text-rendering: optimizeSpeed;
 
     // Config vars

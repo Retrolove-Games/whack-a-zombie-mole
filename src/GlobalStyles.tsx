@@ -13,6 +13,11 @@ export default createGlobalStyle`
     font-display: swap;
   }
 
+  * {
+    cursor: default !important;
+    user-select: none !important;
+  }
+
   html {
     ${reset}
     font-family: 'Atari Classic Chunky';

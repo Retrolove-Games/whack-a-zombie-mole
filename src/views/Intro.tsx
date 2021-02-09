@@ -24,7 +24,7 @@ export const Intro = () => {
   const logoAnimation = useSpring({
     top: '0',
     from: { top: '-140px' },
-    config: { easing: easings.easeCubic, duration: 1500 },
+    config: { easing: easings.easeCubic, duration: 2500 },
     onRest: () => {
       sfxEngine.testAlert();
       setTimeout(() => {

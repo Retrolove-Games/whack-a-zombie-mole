@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from "react";
 import styled from 'styled-components/macro';
 import {useSpring, animated} from 'react-spring';
 import * as easings from 'd3-ease';
 import { Image } from '../components/Image';
 import Title from '../assets/title-logo.png';
+import { GameCtx } from "../context/GameContext";
 
 const Wrapper = styled.div`
   width: var(--native-width);
@@ -25,6 +26,7 @@ const MenuContainer = styled.ul`
 `;
 
 export const Menu = () => {
+  const { dispatch, state } = useContext(GameCtx);
 
   const logoAnimation = useSpring({
     top: '0',
@@ -39,7 +41,7 @@ export const Menu = () => {
       </animated.div>
       <MenuContainer>
         <li>Start Game</li>
-        <li>Enable sound</li>
+        <li onClick={() => dispatch({ type: 'TOGGLE_SFX' })}>{ state.sound ? "Disable sound" : "Enable sound" }</li>
         <li>Highscores</li>
       </MenuContainer>
     </Wrapper>

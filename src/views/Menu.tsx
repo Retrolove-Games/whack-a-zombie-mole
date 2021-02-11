@@ -6,6 +6,7 @@ import { Image } from '../components/Image';
 import Title from '../assets/title-logo.png';
 import Button from '../components/Button';
 import { GameCtx } from "../context/GameContext";
+import { SfxCtx } from '../context/SfxContext';
 
 const Wrapper = styled.div`
   width: var(--native-width);
@@ -29,6 +30,7 @@ const MenuContainer = styled.ul`
 
 export const Menu = () => {
   const { dispatch, state } = useContext(GameCtx);
+  const {playSfx} = useContext(SfxCtx);
 
   const logoAnimation = useSpring({
     top: '0',
@@ -43,15 +45,15 @@ export const Menu = () => {
       </animated.div>
       <MenuContainer>
         <li>
-          <Button>Start game</Button>
+          <Button onClick={ () => playSfx('menu') }>Start game</Button>
         </li>
         <li>
-          <Button onClick={() => dispatch({ type: 'TOGGLE_SFX' })}>
+          <Button onClick={() => { playSfx('off'); dispatch({ type: 'TOGGLE_SFX' }); } }>
             { state.sound ? "Disable sound" : "Enable sound" }
           </Button>
         </li>
         <li>
-          <Button>Highscores</Button>
+          <Button onClick={ () => playSfx('menu') }>Highscores</Button>
         </li>
       </MenuContainer>
     </Wrapper>

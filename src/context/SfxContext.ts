@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface Ctx {
-  testAlert(): void
+  playSfx(sample: string): void
 }
 
 export const SfxCtx = React.createContext(

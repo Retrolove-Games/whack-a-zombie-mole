@@ -4,7 +4,6 @@ import {useSpring, animated} from 'react-spring';
 import * as easings from 'd3-ease';
 import { Image } from '../components/Image';
 import Logo from '../assets/logo-retrolove.png';
-import { SfxCtx } from '../context/SfxContext';
 import { GameCtx } from '../context/GameContext';
 
 const Wrapper = styled.div`
@@ -18,7 +17,6 @@ const Wrapper = styled.div`
 `;
 
 export const Intro = () => {
-  const sfxEngine = useContext(SfxCtx);
   const { dispatch } = useContext(GameCtx);
 
   const logoAnimation = useSpring({
@@ -26,7 +24,6 @@ export const Intro = () => {
     from: { top: '-140px' },
     config: { easing: easings.easeCubic, duration: 2500 },
     onRest: () => {
-      sfxEngine.testAlert();
       setTimeout(() => {
         dispatch({ type: 'CHANGE_SCREEN', screen: 'menu' });
       }, 1000);
@@ -34,7 +31,7 @@ export const Intro = () => {
   });
 
   return (
-    <Wrapper onClick={ () => sfxEngine.testAlert() } >
+    <Wrapper>
       <animated.div style={{...logoAnimation, position: 'relative'}}>
         <Image src={Logo} alt="" width="140" height="31" />
       </animated.div>

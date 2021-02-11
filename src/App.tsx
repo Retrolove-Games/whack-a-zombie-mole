@@ -33,9 +33,15 @@ function App() {
     }
   }, [state.screen]);
 
+  // Sfx dispatcher
+  const playSfx = (sample: string): void => {
+    if (state.sound)
+      sfxEngine.playSample(sample);
+  }
+
   return (
     <Wrapper className="App">
-      <SfxCtx.Provider value={sfxEngine}>
+      <SfxCtx.Provider value={{playSfx}}>
         <GameCtx.Provider value={{state, dispatch}}>
           {view}
         </GameCtx.Provider>

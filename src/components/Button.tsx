@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes } from "react";
 import styled from 'styled-components/macro';
 
-const Button = styled.button`
+const StyledButton = styled.button`
   line-height: 100%;
 	background: none;
 	color: inherit;
@@ -22,8 +22,10 @@ interface MyButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: any;
 }
 
-export default (props: MyButtonProps) => {
+const Button = (props: MyButtonProps) => {
   const { children } = props;
 
-  return <Button { ...props }>{ children }</Button>;
+  return <StyledButton { ...props }>{ children }</StyledButton>;
 }
+
+export default Button;

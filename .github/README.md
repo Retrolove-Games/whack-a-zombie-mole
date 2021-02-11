@@ -15,7 +15,7 @@ Game written in `React` to train up some skills.
 
 ### Sound engine
 
-I've used a very simple wave generator written in JS. Check its documentation [here](https://github.com/grumdrig/jsfxr) and test it using a [demo](http://github.grumdrig.com/jsfxr/).
+I've used a very simple wave generator written in JS. Check its documentation [here](https://github.com/grumdrig/jsfxr) and test it using a [generator](https://sfxr.me/).
 
 ### Game egine
 

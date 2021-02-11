@@ -28,6 +28,7 @@ export default createGlobalStyle`
     --color-text: #efefef;
     --color-background: black;
     --color-primary: rebeccapurple;
+    --color-hover: #6c6c6c;
     --native-width: 320px;
     --native-height: 210px;
   }

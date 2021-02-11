@@ -4,6 +4,7 @@ import {useSpring, animated} from 'react-spring';
 import * as easings from 'd3-ease';
 import { Image } from '../components/Image';
 import Title from '../assets/title-logo.png';
+import Button from '../components/Button';
 import { GameCtx } from "../context/GameContext";
 
 const Wrapper = styled.div`
@@ -18,10 +19,11 @@ const Wrapper = styled.div`
 const MenuContainer = styled.ul`
   list-style: none;
   padding: 0 0;
-  margin: 15px 0 0 0;
+  margin: 10px 0 0 0;
 
   li {
-    margin-bottom: 10px;
+    padding: 0 0;
+    margin: 0 0;
   }
 `;
 
@@ -40,9 +42,17 @@ export const Menu = () => {
         <Image src={Title} alt="" width="200" height="104" />
       </animated.div>
       <MenuContainer>
-        <li>Start Game</li>
-        <li onClick={() => dispatch({ type: 'TOGGLE_SFX' })}>{ state.sound ? "Disable sound" : "Enable sound" }</li>
-        <li>Highscores</li>
+        <li>
+          <Button>Start game</Button>
+        </li>
+        <li>
+          <Button onClick={() => dispatch({ type: 'TOGGLE_SFX' })}>
+            { state.sound ? "Disable sound" : "Enable sound" }
+          </Button>
+        </li>
+        <li>
+          <Button>Highscores</Button>
+        </li>
       </MenuContainer>
     </Wrapper>
   );

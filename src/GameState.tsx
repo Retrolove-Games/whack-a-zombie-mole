@@ -49,6 +49,7 @@ export function reducer(state: GameStateInterface, action: ReducerAction) {
         ...state,
         nickname: action.nickname
       }
+    // TOGGLE_SFX
     case "TOGGLE_SFX":
       return {
         ...state,

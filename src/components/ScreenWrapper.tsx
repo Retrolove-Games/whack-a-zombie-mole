@@ -12,6 +12,11 @@ const Background = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  
+
+  > * {
+    cursor: var(--cursor), auto;
+  }
 `;
 
 const Screen = styled.div`

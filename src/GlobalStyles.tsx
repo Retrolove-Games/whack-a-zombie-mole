@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import AtariClassicChunky from './assets/fonts/AtariClassicChunky.woff';
 import AtariClassicChunky2 from './assets/fonts/AtariClassicChunky.woff2';
+import Cursor from "./assets/cursor.png";
 
 export default createGlobalStyle`
   @font-face {
@@ -14,7 +15,6 @@ export default createGlobalStyle`
   }
 
   * {
-    cursor: default !important;
     user-select: none !important;
   }
 
@@ -31,5 +31,6 @@ export default createGlobalStyle`
     --color-hover: #6c6c6c;
     --native-width: 320px;
     --native-height: 210px;
+    --cursor: url(${Cursor});
   }
 `;

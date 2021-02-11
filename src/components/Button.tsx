@@ -11,6 +11,7 @@ const Button = styled.button`
 	cursor: pointer;
 	outline: inherit;
   padding: 5px;
+  cursor: var(--cursor), auto;
 
   &:hover {
     color: var(--color-hover);

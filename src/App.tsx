@@ -5,6 +5,7 @@ import { GameCtx } from './context/GameContext';
 import { SfxCtx } from './context/SfxContext';
 import { Intro } from './views/Intro';
 import { Menu } from './views/Menu';
+import { Game } from './views/Game';
 import SFX from './sfx/SFX';
 
 
@@ -30,6 +31,10 @@ function App() {
         break;
       case 'menu':
         setView(<Menu />);
+        break;
+      case 'game':
+        setView(<Game />);
+        break;
     }
   }, [state.screen]);
 

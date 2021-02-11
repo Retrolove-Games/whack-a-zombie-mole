@@ -34,8 +34,8 @@ function App() {
   }, [state.screen]);
 
   // Sfx dispatcher
-  const playSfx = (sample: string): void => {
-    if (state.sound)
+  const playSfx = (sample: string, force?: boolean): void => {
+    if (force || state.sound)
       sfxEngine.playSample(sample);
   }
 

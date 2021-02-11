@@ -48,7 +48,7 @@ export const Menu = () => {
           <Button onClick={ () => playSfx('menu') }>Start game</Button>
         </li>
         <li>
-          <Button onClick={() => { playSfx('off'); dispatch({ type: 'TOGGLE_SFX' }); } }>
+          <Button onClick={() => { state.sound ? playSfx('off', true) : playSfx('menu', true); dispatch({ type: 'TOGGLE_SFX' }); } }>
             { state.sound ? "Disable sound" : "Enable sound" }
           </Button>
         </li>

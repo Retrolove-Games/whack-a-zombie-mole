@@ -18,16 +18,20 @@ const GameGrid = styled.div`
   padding: 0 10px;
 `;
 
+const gameLenght = 100;
+
 export const Game = () => { 
   const { dispatch, state } = useContext(GameCtx);
   const { playSfx } = useContext(SfxCtx);
-  const [ time, updateTime ] = useState(60);
+  const [ time, updateTime ] = useState(gameLenght);
 
-  let timer = 10;
-
+  // Main ticker
   useEffect(() => {
+    let timer = gameLenght;
+
     const heartBeat = setInterval(() => {
       console.log("Clock beating...", timer);
+      //console.log(process.env.NODE_ENV);
       if (timer > 0) {
         updateTime(--timer);
       } else {
@@ -44,13 +48,14 @@ export const Game = () => {
       <p>Time: {time}</p>
       <GameGrid>
         {/* Row 1 */}
-        <Mole onClick={ () => { dispatch( { type: "INCREMENT_POINTS", points: 10 } ); playSfx("hit"); } } />
-        <Mole />
-        <Mole />
-        <Mole />
+        <Mole active={false} clickHandler={ () => alert(1) } />
+        <Mole active={false} clickHandler={ () => alert(1) } />
+        <Mole active={false} clickHandler={ () => alert(1) } />
+        <Mole active={true} clickHandler={ () =>  { dispatch( { type: "INCREMENT_POINTS", points: 10 } ); playSfx("hit"); } } />
         {/* Row 2 */}
       </GameGrid>
     </Wrapper>
 
   );
 };
+// onClick={ () => { dispatch( { type: "INCREMENT_POINTS", points: 10 } ); playSfx("hit"); } }

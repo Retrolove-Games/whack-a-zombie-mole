@@ -24,3 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 *Zone.Identifier
+Thumbs.db:encryptable
+Thumbs.db

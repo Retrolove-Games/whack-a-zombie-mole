@@ -19,10 +19,11 @@ const StyledMole = styled.div<StyledMoleProps >`
 
 interface MoleProps {
   active: boolean,
+  type: "mole" | "princess",
   clickHandler: Function
 };
 
-export const Mole = ({active, clickHandler}: MoleProps) => {
+export const Mole = ({active, type, clickHandler}: MoleProps) => {
   console.log(active);
   return <StyledMole active={active} onClick={() => clickHandler()} />;
 }

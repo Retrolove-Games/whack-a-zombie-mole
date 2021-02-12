@@ -24,6 +24,5 @@ interface MoleProps {
 };
 
 export const Mole = ({active, type, clickHandler}: MoleProps) => {
-  console.log(active);
   return <StyledMole active={active} onClick={() => clickHandler()} />;
 }

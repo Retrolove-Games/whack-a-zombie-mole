@@ -19,11 +19,27 @@ const GameGrid = styled.div`
 `;
 
 const gameLenght = 100;
+const gameElements = 12;
+
+interface gameElement {
+  active: boolean,
+  type: "mole" | "princess"
+}
+
+const initialGameState: Array<gameElement> = Array(gameElements).fill({active: false, type: 'mole'});
+
+const randomizeGameElements = (gameElements: Array<gameElement>): Array<gameElement> => {
+  const randomIndex = Math.floor(Math.random() * gameElements.length);
+  gameElements[randomIndex].active = true;
+  console.log("updating", randomIndex);
+  return gameElements;
+}
 
 export const Game = () => { 
   const { dispatch, state } = useContext(GameCtx);
   const { playSfx } = useContext(SfxCtx);
   const [ time, updateTime ] = useState(gameLenght);
+  const [ gameElements, updateGameElements ] = useState(initialGameState); 
 
   // Main ticker
   useEffect(() => {
@@ -33,6 +49,18 @@ export const Game = () => {
       console.log("Clock beating...", timer);
       //console.log(process.env.NODE_ENV);
       if (timer > 0) {
+        const randomIndex = Math.floor(Math.random() * gameElements.length);
+
+        let changedState = gameElements.map((item, index) => {
+          if (index === randomIndex) {
+            return { ...item, active: true}
+          } else {
+            return item;
+          }
+        });
+
+        updateGameElements(changedState);
+        
         updateTime(--timer);
       } else {
         dispatch({ type: "CHANGE_SCREEN", screen: "menu" });
@@ -47,15 +75,22 @@ export const Game = () => {
       <p>Score: {state.points}</p>
       <p>Time: {time}</p>
       <GameGrid>
-        {/* Row 1 */}
-        <Mole active={false} clickHandler={ () => alert(1) } />
-        <Mole active={false} clickHandler={ () => alert(1) } />
-        <Mole active={false} clickHandler={ () => alert(1) } />
-        <Mole active={true} clickHandler={ () =>  { dispatch( { type: "INCREMENT_POINTS", points: 10 } ); playSfx("hit"); } } />
-        {/* Row 2 */}
+        {
+          gameElements.map( (item, index) => <Mole key={index} active={item.active} type={item.type} clickHandler={ () => alert(1) } />) 
+        }
       </GameGrid>
     </Wrapper>
 
   );
 };
 // onClick={ () => { dispatch( { type: "INCREMENT_POINTS", points: 10 } ); playSfx("hit"); } }
+/**
+ 
+
+        <Mole active={false} type="mole" clickHandler={ () => alert(1) } />
+        <Mole active={false} type="mole" clickHandler={ () => alert(1) } />
+        <Mole active={false} type="mole" clickHandler={ () => alert(1) } />
+        <Mole active={true} type="mole" clickHandler={ () =>  { dispatch( { type: "INCREMENT_POINTS", points: 10 } ); playSfx("hit"); } } />
+}
+
+ */

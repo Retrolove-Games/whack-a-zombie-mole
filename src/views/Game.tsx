@@ -137,7 +137,7 @@ export const Game = () => {
                   dispatch({ type: "INCREMENT_POINTS", points: 10 });
                   playSfx("hit");
                 } else {
-                  dispatch({ type: "INCREMENT_POINTS", points: -10 });
+                  dispatch({ type: "DECREMENT_POINTS", points: 10 });
                 }
               }
             }}

@@ -7,10 +7,13 @@ export interface GameStateInterface {
   sound: boolean;
 }
 
-export declare type ReducerActionType =  "INCREMENT_POINTS" | "CHANGE_SCREEN" | "SET_NICKNAME" | "TOGGLE_SFX";
+export declare type ReducerActionType =  "INCREMENT_POINTS" | "DECREMENT_POINTS" | "CHANGE_SCREEN" | "SET_NICKNAME" | "TOGGLE_SFX";
 
 export type ReducerAction = {
   type: "INCREMENT_POINTS";
+  points: number;
+} | {
+  type: "DECREMENT_POINTS";
   points: number;
 } | {
   type: "CHANGE_SCREEN";
@@ -36,6 +39,12 @@ export function reducer(state: GameStateInterface, action: ReducerAction) {
       return {
         ...state,
         points: state.points + action.points
+      }
+    // DECREMENT_POINTS
+    case "DECREMENT_POINTS":
+      return {
+        ...state,
+        points: state.points > 0 ? state.points - action.points : 0
       }
     // CHANGE_SCREEN
     case "CHANGE_SCREEN":

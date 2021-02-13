@@ -18,7 +18,7 @@ const StyledMole = styled.div<StyledMoleProps >`
   background-size: 60px 40px;
   image-rendering: pixelated;
   opacity: ${ props => props.active ? 1 : 0.2 };
-  border: ${ props => props.type == "mole" ? "solid 1px Yellow" : "solid 1px White" };
+  border: ${ props => props.type === "mole" ? "solid 1px Yellow" : "solid 1px White" };
 `;
 
 interface MoleProps {

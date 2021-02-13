@@ -21,7 +21,7 @@ const GameGrid = styled.div`
 
 const gameLenght = 20;
 const gameElements = 12;
-const gameSpeed = 800;
+const gameSpeed = 550;
 
 interface gameElement {
   active: boolean;
@@ -99,7 +99,7 @@ export const Game = () => {
     return () => {
       clearTimeout(heartBeat);
     };
-  }, [time]);
+  }, [time, dispatch]);
 
   /**
    * This is game speed hearbeat.

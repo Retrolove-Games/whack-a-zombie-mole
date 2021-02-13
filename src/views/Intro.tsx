@@ -17,17 +17,20 @@ const Wrapper = styled.div`
 `;
 
 export const Intro = () => {
-  const { dispatch } = useContext(GameCtx);
+  const { dispatch, state } = useContext(GameCtx);
 
   const logoAnimation = useSpring({
-    top: '0',
     from: { top: '-140px' },
+    to: { top: '0' },
     config: { easing: easings.easeCubic, duration: 2500 },
     onRest: () => {
-      setTimeout(() => {
-        dispatch({ type: 'CHANGE_SCREEN', screen: 'menu' });
-      }, 1000);
-    }
+      // This hack eliminates problem with multiple onRest events.
+      if(state.screen === "intro") {
+        setTimeout(() => {
+          dispatch({ type: 'CHANGE_SCREEN', screen: 'menu' });
+        }, 1000);
+      }
+    } 
   });
 
   return (

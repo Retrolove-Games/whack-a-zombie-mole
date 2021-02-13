@@ -126,18 +126,19 @@ export const Game = () => {
             type={item.type}
             clickHandler={() => {
               if (item.active) {
+                // Update clicked element.
                 updateGameElements(
                   gameElements.map((el) =>
                     el.id === item.id ? { ...el, active: false } : el
                   )
                 );
-                // updateGameElements(randomizeGameElements(gameElements));
 
                 if (item.type === "mole") {
                   dispatch({ type: "INCREMENT_POINTS", points: 10 });
                   playSfx("hit");
                 } else {
                   dispatch({ type: "DECREMENT_POINTS", points: 10 });
+                  playSfx("princess");
                 }
               }
             }}
@@ -147,14 +148,3 @@ export const Game = () => {
     </Wrapper>
   );
 };
-// onClick={ () => { dispatch( { type: "INCREMENT_POINTS", points: 10 } ); playSfx("hit"); } }
-/**
- 
-
-        <Mole active={false} type="mole" clickHandler={ () => alert(1) } />
-        <Mole active={false} type="mole" clickHandler={ () => alert(1) } />
-        <Mole active={false} type="mole" clickHandler={ () => alert(1) } />
-        <Mole active={true} type="mole" clickHandler={ () =>  { dispatch( { type: "INCREMENT_POINTS", points: 10 } ); playSfx("hit"); } } />
-}
-
- */

@@ -20,9 +20,10 @@ const GameGrid = styled.div`
   padding: 0 10px;
 `;
 
-const gameLenght = 20;
 const gameElements = 12;
-const gameSpeed = 550;
+const initialGameSpeed = 800;
+const gameSpeedup = 50;
+const maximumSpeed = 200;
 
 interface gameElement {
   active: boolean;
@@ -71,19 +72,20 @@ const randomizeGameElements = function (
 export const Game = () => {
   const { dispatch, state } = useContext(GameCtx);
   const { playSfx } = useContext(SfxCtx);
-  const [time, updateTime] = useState(gameLenght);
+  const [time, updateTime] = useState(0);
+  const [speed, updateSpeed] = useState(initialGameSpeed);
   const [gameElements, updateGameElements] = useState(initialGameState);
 
   /**
    * This is main game heartbeat.
    */
   useEffect(() => {
-    const heartBeat = setTimeout(() => {
-      updateTime(time - 1);
+    if (time % 10 === 0 && speed > maximumSpeed) {
+      updateSpeed(speed - gameSpeedup);
+    }
 
-      if (time === 1) {
-        dispatch({ type: "CHANGE_SCREEN", screen: "menu" });
-      }
+    const heartBeat = setTimeout(() => {
+      updateTime(time + 1);
     }, 1000);
 
     return () => {
@@ -97,7 +99,7 @@ export const Game = () => {
   useEffect(() => {
     const gameHeartbeat = setTimeout(() => {
       updateGameElements(randomizeGameElements(gameElements));
-    }, gameSpeed);
+    }, speed);
 
     return () => {
       clearTimeout(gameHeartbeat);

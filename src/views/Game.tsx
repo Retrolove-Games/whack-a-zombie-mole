@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import uniqid from "uniqid";
+import { getRandomWithOneExclusion } from "../lib/helpers";
 import { GameCtx } from "../context/GameContext";
 import { SfxCtx } from "../context/SfxContext";
 import { Mole, MoleType } from "../gameComponents/Mole";
@@ -32,17 +33,6 @@ interface gameElement {
 const initialGameState: Array<gameElement> = Array(gameElements)
   .fill({ id: 0, active: false, type: "mole" })
   .map((item) => ({ ...item, id: uniqid() }));
-
-//
-function getRandomWithOneExclusion(lengthOfArray: number, indexToExclude: number): number {
-  var rand = null; //an integer
-
-  while (rand === null || rand === indexToExclude) {
-    rand = ~~(Math.random() * (lengthOfArray - 1));
-  }
-
-  return rand;
-}
 
 /**
  * Randomize game board.

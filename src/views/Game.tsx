@@ -30,7 +30,7 @@ const speedupFactor = 5;
 // Less is more (time in miliseconds)
 const maximumSpeed = 600;
 // Game time limit (seconds)
-const timeLimit = 80;
+const timeLimit = 120;
 // Bad click decreases points by...
 const badClickPoints = 10;
 // Good click increases points by...

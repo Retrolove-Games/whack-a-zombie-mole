@@ -24,7 +24,7 @@ const gameElements = 12;
 // Initlial display time
 const initialGameSpeed = 900;
 // How many miliseconds speedup
-const gameSpeedup = 25;
+const gameSpeedup = 20;
 // Round time
 const speedupFactor = 5;
 // Less is more (time in miliseconds)
@@ -138,7 +138,7 @@ export const Game = () => {
     <Wrapper>
       <p>Score: {state.points}</p>
       <p>Time: {time}</p>
-      <p>Combo factor: {comboFactor}</p>
+      <p>Combo factor: {comboFactor} / Speed: {speed}</p>
       <GameGrid>
         {gameElements.map((item, index) => (
           <Mole

@@ -16,6 +16,8 @@ export type ReducerAction = {
   type: "DECREMENT_POINTS";
   points: number;
 } | {
+  type: "RESET_POINTS";
+} | {
   type: "CHANGE_SCREEN";
   screen: GameScreen;
 } | {
@@ -45,6 +47,12 @@ export function reducer(state: GameStateInterface, action: ReducerAction) {
       return {
         ...state,
         points: state.points > 0 ? state.points - action.points : 0
+      }
+    // RESET_POINTS
+    case "RESET_POINTS":
+      return {
+        ...state,
+        points: 0
       }
     // CHANGE_SCREEN
     case "CHANGE_SCREEN":

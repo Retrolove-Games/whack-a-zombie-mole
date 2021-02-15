@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import uniqid from "uniqid";
-import { getRandomWithOneExclusion } from "../lib/helpers";
+import { getRandomWithExclusions} from "../lib/helpers";
 import { GameCtx } from "../context/GameContext";
 import { SfxCtx } from "../context/SfxContext";
 import { Mole, MoleType } from "../gameComponents/Mole";
@@ -21,18 +21,28 @@ const GameGrid = styled.div`
 `;
 
 const gameElements = 12;
+// Initlial display time
 const initialGameSpeed = 800;
-const gameSpeedup = 50;
-const maximumSpeed = 200;
+// How many miliseconds speedup
+const gameSpeedup = 25;
+// Round time
+const speedupFactor = 5;
+// Less is more (time in miliseconds)
+const maximumSpeed = 500;
+// Game time limit (seconds)
+const timeLimit = 80;
+// Bad click decreases points by...
+const badClickPoints = 10;
 
 interface gameElement {
   active: boolean;
   type: MoleType;
   id: string;
+  wasActive: boolean;
 }
 
 const initialGameState: Array<gameElement> = Array(gameElements)
-  .fill({ id: 0, active: false, type: "mole" })
+  .fill({ id: 0, active: false, type: "mole", wasActive: false })
   .map((item) => ({ ...item, id: uniqid() }));
 
 /**
@@ -47,24 +57,24 @@ const randomizeGameElements = function (
 
   // Active Mole
   const activeMole = gameElements.findIndex(
-    (el) => el.active && el.type === "mole"
+    (el) => el.active && el.type === "mole" && el.wasActive
   );
 
   // Active Princess
   const activePrincess = gameElements.findIndex(
-    (el) => el.active && el.type === "princess"
+    (el) => el.active && el.type === "princess" && el.wasActive
   );
 
-  const randomMole = getRandomWithOneExclusion(gameElements.length, activeMole);
-  const randomPrincess = getRandomWithOneExclusion(gameElements.length, activePrincess);
+  const randomMole = getRandomWithExclusions(gameElements.length, [activeMole, activePrincess]);
+  const randomPrincess = getRandomWithExclusions(gameElements.length, [activeMole, activePrincess, randomMole]);
 
   return gameElements.map((item, index) => {
     if (index === randomMole) {
-      return { ...item, active: true, type: "mole" };
+      return { ...item, active: true, wasActive: true, type: "mole" };
     } else if(index === randomPrincess) {
-      return { ...item, active: true, type: "princess" };
+      return { ...item, active: true, wasActive: true, type: "princess" };
     } else {
-      return { ...item, active: false };
+      return { ...item, active: false, wasActive: false };
     }
   });
 };
@@ -72,7 +82,7 @@ const randomizeGameElements = function (
 export const Game = () => {
   const { dispatch, state } = useContext(GameCtx);
   const { playSfx } = useContext(SfxCtx);
-  const [time, updateTime] = useState(0);
+  const [time, updateTime] = useState(timeLimit);
   const [speed, updateSpeed] = useState(initialGameSpeed);
   const [gameElements, updateGameElements] = useState(initialGameState);
 
@@ -80,12 +90,17 @@ export const Game = () => {
    * This is main game heartbeat.
    */
   useEffect(() => {
-    if (time % 10 === 0 && speed > maximumSpeed) {
+    if (time === 1) {
+      alert(state.points);
+      dispatch({ type: 'CHANGE_SCREEN', screen: 'menu' });
+    }
+
+    if (time % speedupFactor === 0 && speed > maximumSpeed) {
       updateSpeed(speed - gameSpeedup);
     }
 
     const heartBeat = setTimeout(() => {
-      updateTime(time + 1);
+      updateTime(time - 1);
     }, 1000);
 
     return () => {
@@ -129,7 +144,7 @@ export const Game = () => {
                   dispatch({ type: "INCREMENT_POINTS", points: 10 });
                   playSfx("hit");
                 } else {
-                  dispatch({ type: "DECREMENT_POINTS", points: 10 });
+                  dispatch({ type: "DECREMENT_POINTS", points: badClickPoints });
                   playSfx("princess");
                 }
               }

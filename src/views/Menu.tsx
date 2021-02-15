@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components/macro";
 import { useSpring, animated } from "react-spring";
 import * as easings from "d3-ease";
@@ -31,6 +31,10 @@ const MenuContainer = styled.ul`
 export const Menu = () => {
   const { dispatch, state } = useContext(GameCtx);
   const { playSfx } = useContext(SfxCtx);
+
+  useEffect(() => {
+    dispatch({ type: "RESET_POINTS" });
+  }, []);
 
   const logoAnimation = useSpring({
     top: "0",

@@ -33,6 +33,10 @@ const maximumSpeed = 500;
 const timeLimit = 80;
 // Bad click decreases points by...
 const badClickPoints = 10;
+// Good click increases points by...
+const goodClickPoints = 10
+// Max combo
+const maxComboFactor = 4;
 
 interface gameElement {
   active: boolean;
@@ -85,6 +89,8 @@ export const Game = () => {
   const [time, updateTime] = useState(timeLimit);
   const [speed, updateSpeed] = useState(initialGameSpeed);
   const [gameElements, updateGameElements] = useState(initialGameState);
+  const [comboFactor, updateComboFactor] = useState(1);
+  const [hadSuccess, updateSuccess] = useState(false);
 
   /**
    * This is main game heartbeat.
@@ -113,6 +119,13 @@ export const Game = () => {
    */
   useEffect(() => {
     const gameHeartbeat = setTimeout(() => {
+      // Check combo
+      if (!hadSuccess) {
+        updateComboFactor(1);
+      }
+  
+      updateSuccess(false);
+
       updateGameElements(randomizeGameElements(gameElements));
     }, speed);
 
@@ -125,6 +138,7 @@ export const Game = () => {
     <Wrapper>
       <p>Score: {state.points}</p>
       <p>Time: {time}</p>
+      <p>Combo factor: {comboFactor}</p>
       <GameGrid>
         {gameElements.map((item, index) => (
           <Mole
@@ -141,7 +155,16 @@ export const Game = () => {
                 );
 
                 if (item.type === "mole") {
-                  dispatch({ type: "INCREMENT_POINTS", points: 10 });
+                  const points = goodClickPoints * comboFactor;
+
+                  // If was clicked mark as success.
+                  updateSuccess(true);
+
+                  if (comboFactor < maxComboFactor) {
+                    updateComboFactor(comboFactor + 1);
+                  } 
+
+                  dispatch({ type: "INCREMENT_POINTS", points: points });
                   playSfx("hit");
                 } else {
                   dispatch({ type: "DECREMENT_POINTS", points: badClickPoints });

@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes, css } from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import MoleSprite from "../assets/mole.png";
 import PrincessSprite from "../assets/princess.png";
 import Frame from "../assets/frame.png";
@@ -49,7 +49,7 @@ const StyledMole = styled.div<StyledMoleProps>`
     background-image: url(${ ({type}) => type === 'mole' ? MoleSprite : PrincessSprite });
     background-repeat: no-repeat;
     transition: all .2s ease-out;
-    ${({active, type}) => handleAnimation(active) };
+    ${({active}) => handleAnimation(active) };
   }
 `;
 

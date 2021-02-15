@@ -1,7 +1,8 @@
 import React from "react";
 import styled, { keyframes, css } from "styled-components/macro";
-import Sprite from "../assets/game-sprite-test.png";
-import SpriteSheet from "../assets/mole-sprite-sheet.png";
+import MoleSprite from "../assets/mole.png";
+import PrincessSprite from "../assets/princess.png";
+import Frame from "../assets/frame.png";
 
 export type MoleType = "mole" | "princess";
 
@@ -11,33 +12,45 @@ interface StyledMoleProps {
   speed: number;
 }
 
-const handleAnimation = (active: boolean, type: MoleType) => {
-  if (active) {
-    return (type === 'mole') ? css`transform: rotate(30deg);` : css`transform: scale(2);`;
+const handleAnimation = (active: boolean) => {
+  if (!active) {
+    return css`transform: translateY(100%);`;
   }
 }
 
-const up = keyframes`
-  100% { background-position: -360px 0; }
-`;
-
-const down = keyframes`
-  0% { background-position: -360px 0; }
-  100% { background-position: 0 0; }
-`;
-
-const StyledMole = styled.div<StyledMoleProps >`
+const StyledMole = styled.div<StyledMoleProps>`
   width: 60px;
   height: 40px;
+  background-color: #404040;
+  position: relative;
 
-  background: url(${Sprite});
   background-repeat: no-repeat;
   image-rendering: pixelated;
+  overflow: hidden;
 
-  // transform: rotate(0deg);
-  transition: all .2s ease-out;
-  
-  ${({active, type}) => handleAnimation(active, type) };
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    background-image: url(${Frame});
+    background-repeat: no-repeat;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    background-image: url(${ ({type}) => type === 'mole' ? MoleSprite : PrincessSprite });
+    background-repeat: no-repeat;
+    transition: all .2s ease-out;
+    ${({active, type}) => handleAnimation(active) };
+  }
 `;
 
 interface MoleProps {

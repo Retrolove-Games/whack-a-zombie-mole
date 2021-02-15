@@ -22,13 +22,13 @@ const GameGrid = styled.div`
 
 const gameElements = 12;
 // Initlial display time
-const initialGameSpeed = 1500;
+const initialGameSpeed = 900;
 // How many miliseconds speedup
 const gameSpeedup = 25;
 // Round time
 const speedupFactor = 5;
 // Less is more (time in miliseconds)
-const maximumSpeed = 500;
+const maximumSpeed = 600;
 // Game time limit (seconds)
 const timeLimit = 80;
 // Bad click decreases points by...

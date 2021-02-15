@@ -1,32 +1,52 @@
 import React from "react";
-import styled from "styled-components/macro";
+import styled, { keyframes, css } from "styled-components/macro";
 import Sprite from "../assets/game-sprite-test.png";
+import SpriteSheet from "../assets/mole-sprite-sheet.png";
 
 export type MoleType = "mole" | "princess";
 
 interface StyledMoleProps {
   active: boolean;
   type: MoleType;
+  speed: number;
 }
+
+const handleAnimation = (active: boolean, type: MoleType) => {
+  if (active) {
+    return (type === 'mole') ? css`transform: rotate(30deg);` : css`transform: scale(2);`;
+  }
+}
+
+const up = keyframes`
+  100% { background-position: -360px 0; }
+`;
+
+const down = keyframes`
+  0% { background-position: -360px 0; }
+  100% { background-position: 0 0; }
+`;
 
 const StyledMole = styled.div<StyledMoleProps >`
   width: 60px;
   height: 40px;
-  background-image: url(${Sprite});
+
+  background: url(${Sprite});
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 60px 40px;
   image-rendering: pixelated;
-  opacity: ${ props => props.active ? 1 : 0.2 };
-  border: ${ props => props.type === "mole" ? "solid 1px Yellow" : "solid 1px White" };
+
+  // transform: rotate(0deg);
+  transition: all .2s ease-out;
+  
+  ${({active, type}) => handleAnimation(active, type) };
 `;
 
 interface MoleProps {
   active: boolean,
   type: MoleType,
-  clickHandler: Function
+  clickHandler: Function,
+  speed: number
 };
 
-export const Mole = ({active, type, clickHandler}: MoleProps) => {
-  return <StyledMole active={active} type={type} onClick={() => clickHandler()} />;
+export const Mole = ({active, type, clickHandler, speed}: MoleProps) => {
+  return <StyledMole active={active} type={type} speed={speed} onClick={() => clickHandler()} />;
 }

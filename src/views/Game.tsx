@@ -22,7 +22,7 @@ const GameGrid = styled.div`
 
 const gameElements = 12;
 // Initlial display time
-const initialGameSpeed = 800;
+const initialGameSpeed = 1500;
 // How many miliseconds speedup
 const gameSpeedup = 25;
 // Round time
@@ -123,7 +123,7 @@ export const Game = () => {
       if (!hadSuccess) {
         updateComboFactor(1);
       }
-  
+      
       updateSuccess(false);
 
       updateGameElements(randomizeGameElements(gameElements));
@@ -145,6 +145,7 @@ export const Game = () => {
             key={item.id}
             active={item.active}
             type={item.type}
+            speed={speed}
             clickHandler={() => {
               if (item.active) {
                 // Update clicked element.

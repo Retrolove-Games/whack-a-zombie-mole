@@ -1,4 +1,4 @@
-export declare type GameScreen = "intro" | "menu" | "game";
+export declare type GameScreen = "intro" | "menu" | "game" | "info";
 
 export interface GameStateInterface {
   screen: GameScreen;

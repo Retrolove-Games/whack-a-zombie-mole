@@ -52,7 +52,7 @@ export const Menu = () => {
           <Button
             onClick={() => {
               playSfx("menu");
-              dispatch({ type: "CHANGE_SCREEN", screen: "game" });
+              dispatch({ type: "CHANGE_SCREEN", screen: "info" });
             }}
           >
             Start game

@@ -1,12 +1,13 @@
-import React, { useReducer, useEffect, useState } from 'react';
-import styled from 'styled-components/macro';
-import { initialState, reducer } from './GameState';
-import { GameCtx } from './context/GameContext';
-import { SfxCtx } from './context/SfxContext';
-import { Intro } from './views/Intro';
-import { Menu } from './views/Menu';
-import { Game } from './views/Game';
-import SFX from './lib/sfx/SFX';
+import React, { useReducer, useEffect, useState } from "react";
+import styled from "styled-components/macro";
+import { initialState, reducer } from "./GameState";
+import { GameCtx } from "./context/GameContext";
+import { SfxCtx } from "./context/SfxContext";
+import { Intro } from "./views/Intro";
+import { Menu } from "./views/Menu";
+import { Info } from "./views/Info";
+import { Game } from "./views/Game";
+import SFX from "./lib/sfx/SFX";
 
 
 // Atari 2600 emulation wrapper
@@ -26,13 +27,16 @@ function App() {
   // Pseudo routing
   useEffect(() => {
     switch(state.screen) {
-      case 'intro':
+      case "intro":
         setView(<Intro />);
         break;
-      case 'menu':
+      case "menu":
         setView(<Menu />);
         break;
-      case 'game':
+      case "info":
+        setView(<Info />);
+        break;
+      case "game":
         setView(<Game />);
         break;
     }

@@ -1,14 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components/macro";
+import { WrapperBase } from "../styledComponents";
 import uniqid from "uniqid";
 import { getRandomWithExclusions} from "../lib/helpers";
 import { GameCtx } from "../context/GameContext";
 import { SfxCtx } from "../context/SfxContext";
 import { Mole, MoleType } from "../gameComponents/Mole";
 
-const Wrapper = styled.div`
-  width: var(--native-width);
-  height: var(--native-height);
+const Wrapper = styled(WrapperBase)`
   overflow: hidden;
 `;
 

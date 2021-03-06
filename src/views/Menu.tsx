@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components/macro";
+import { WrapperBase } from "../styledComponents";
 import { useSpring, animated } from "react-spring";
 import * as easings from "d3-ease";
 import { Image } from "../components/Image";
@@ -8,9 +9,7 @@ import Button from "../components/Button";
 import { GameCtx } from "../context/GameContext";
 import { SfxCtx } from "../context/SfxContext";
 
-const Wrapper = styled.div`
-  width: var(--native-width);
-  height: var(--native-height);
+const Wrapper = styled(WrapperBase)`
   text-align: center;
   padding-top: 20px;
   position: relative;

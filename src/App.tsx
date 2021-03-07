@@ -7,6 +7,7 @@ import { Intro } from "./views/Intro";
 import { Menu } from "./views/Menu";
 import { Info } from "./views/Info";
 import { Game } from "./views/Game";
+import { Nick } from "./views/Nick";
 import SFX from "./lib/sfx/SFX";
 
 
@@ -38,6 +39,9 @@ function App() {
         break;
       case "game":
         setView(<Game />);
+        break;
+      case "nick":
+        setView(<Nick />);
         break;
     }
   }, [state.screen]);

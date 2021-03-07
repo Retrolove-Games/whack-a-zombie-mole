@@ -34,7 +34,7 @@ const InfoBox = styled.div`
   }
 
   .footer {
-    animation: ${blink} 0.6s steps(2, start) infinite;
+    animation: ${blink} 0.75s steps(2, start) infinite;
   }
 
   .sprite {

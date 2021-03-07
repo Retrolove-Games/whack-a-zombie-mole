@@ -23,6 +23,7 @@ const StyledMole = styled.div<StyledMoleProps>`
   height: 40px;
   background-color: #404040;
   position: relative;
+  display: inline-block;
 
   background-repeat: no-repeat;
   image-rendering: pixelated;

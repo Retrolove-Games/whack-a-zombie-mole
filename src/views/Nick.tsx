@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import Trophy from "../assets/trophy.png";
 import * as easings from "d3-ease";
@@ -32,11 +32,24 @@ const Container = styled.div`
 
 export const Nick = () => {
   const { dispatch, state } = useContext(GameCtx);
+  const [nickname, setNickname] = useState("");
   const spring = useSpring({
     from: { val: 0 },
     to: { val: state.points },
-    config: { easing: easings.easeCubicIn, duration: 1000 }
+    config: { easing: easings.easeCubicIn, duration: 1000 },
   }) as AnimatedValue<{ val: number }>;
+
+  useEffect(() => {
+    const localName = localStorage.getItem("nickname");
+
+    if (localName) {
+      setNickname(localName);
+    }
+  }, []);
+
+  const handleSubmit = () => {
+    localStorage.setItem("nickname", nickname);
+  };
 
   return (
     <Wrapper>
@@ -49,11 +62,16 @@ export const Nick = () => {
             {spring.val.interpolate((val: number) => Math.floor(val))}
           </animated.span>
         </div>
-        <div className="instructions">
-          Enter your name:
-        </div>
+        <div className="instructions">Enter your name:</div>
         <div className="form">
-          <input type="text" />
+          <input
+            type="text"
+            onChange={(e) => setNickname(e.target.value)}
+            value={nickname}
+          />
+          <button type="button" onClick={handleSubmit}>
+            OK
+          </button>
         </div>
       </Container>
       <p>{state.nickname}</p>

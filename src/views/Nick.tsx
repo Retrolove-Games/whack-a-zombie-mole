@@ -105,6 +105,7 @@ export const Nick = () => {
             autoComplete="off"
             ref={inputRef}
             spellCheck="false"
+            maxLength={10}
           />
           <Button type="button" onClick={handleSubmit}>
             OK

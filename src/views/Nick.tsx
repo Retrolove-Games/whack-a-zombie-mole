@@ -22,7 +22,7 @@ const Container = styled.div`
 
   .trophy {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   .score {

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef, InputHTMLAttributes } from "react";
 import styled from "styled-components/macro";
 import Trophy from "../assets/trophy.png";
 import * as easings from "d3-ease";
@@ -9,10 +9,10 @@ import { GameCtx } from "../context/GameContext";
 
 const Wrapper = styled(WrapperBase)`
   display: flex;
-  align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  padding-top: 30px;
 `;
 
 const Container = styled.div`
@@ -27,12 +27,44 @@ const Container = styled.div`
 
   .score {
     text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .instructions {
+    margin-bottom: 10px;
+  }
+`;
+
+const Input = styled.input`
+  -webkit-appearance: none;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  color: var(--color-text);
+  cursor: var(--cursor), auto;
+  width: 100px;
+`;
+
+const Button = styled.button`
+  -webkit-appearance: none;
+  outline: none;
+  background-color: var(--color-text);
+  border: none;
+  text-align: center;
+  color: var(--color-background);
+  cursor: var(--cursor), auto;
+
+  &:hover {
+    color: var(--color-text);
+    background-color: var(--color-hover);
   }
 `;
 
 export const Nick = () => {
   const { dispatch, state } = useContext(GameCtx);
   const [nickname, setNickname] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
   const spring = useSpring({
     from: { val: 0 },
     to: { val: state.points },
@@ -45,6 +77,8 @@ export const Nick = () => {
     if (localName) {
       setNickname(localName);
     }
+
+    if (inputRef.current) inputRef.current.focus();
   }, []);
 
   const handleSubmit = () => {
@@ -62,16 +96,19 @@ export const Nick = () => {
             {spring.val.interpolate((val: number) => Math.floor(val))}
           </animated.span>
         </div>
-        <div className="instructions">Enter your name:</div>
+        <div className="instructions">Please enter your name:</div>
         <div className="form">
-          <input
+          <Input
             type="text"
             onChange={(e) => setNickname(e.target.value)}
             value={nickname}
+            autoComplete="off"
+            ref={inputRef}
+            spellCheck="false"
           />
-          <button type="button" onClick={handleSubmit}>
+          <Button type="button" onClick={handleSubmit}>
             OK
-          </button>
+          </Button>
         </div>
       </Container>
       <p>{state.nickname}</p>

@@ -14,12 +14,16 @@ export default createGlobalStyle`
     font-display: swap;
   }
 
+  ${reset}
+
   * {
     user-select: none !important;
+    font-family: 'Atari Classic Chunky';
+    font-size: 8px;
+    text-rendering: optimizeSpeed;
   }
 
   html {
-    ${reset}
     font-family: 'Atari Classic Chunky';
     font-size: 8px;
     text-rendering: optimizeSpeed;
@@ -33,4 +37,6 @@ export default createGlobalStyle`
     --native-height: 210px;
     --cursor: url(${Cursor});
   }
+
+
 `;

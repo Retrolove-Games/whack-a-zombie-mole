@@ -80,7 +80,7 @@ export const Info = () => {
             active={display}
             type="mole"
             clickHandler={() => {}}
-            speed={600}
+            speed={10000}
           />
         </div>
         <div className="sprite-description">
@@ -93,7 +93,7 @@ export const Info = () => {
             active={display}
             type="princess"
             clickHandler={() => {}}
-            speed={600}
+            speed={10000}
           />
         </div>
         <div className="sprite-description">

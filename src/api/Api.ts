@@ -23,3 +23,11 @@ export const sendScore = (params: scoreInterface, project: string): Promise<Resp
     },
   });
 };
+
+export const getScores = (project: string, count = 10): Promise<Response> => {
+  const apiUrl = Config.apiUrl + "/score/" + project + "/" + count;
+
+  return fetch(apiUrl, {
+    method: "GET"
+  });
+}

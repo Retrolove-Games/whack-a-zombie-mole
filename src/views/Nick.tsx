@@ -98,8 +98,7 @@ export const Nick = () => {
       "whack-a-zombie-mole"
     )
       .then((data) => {
-        console.log(data);
-        dispatch({ type: "CHANGE_SCREEN", screen: "menu" });
+        dispatch({ type: "CHANGE_SCREEN", screen: "highscores" });
       })
       .catch((e) => {
         alert("Sorry, something went wrong :/");

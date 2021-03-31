@@ -8,6 +8,7 @@ import { Menu } from "./views/Menu";
 import { Info } from "./views/Info";
 import { Game } from "./views/Game";
 import { Nick } from "./views/Nick";
+import { Highscores } from "./views/Highscores";
 import SFX from "./lib/sfx/SFX";
 
 
@@ -42,6 +43,9 @@ function App() {
         break;
       case "nick":
         setView(<Nick />);
+        break;
+      case "highscores":
+        setView(<Highscores />);
         break;
     }
   }, [state.screen]);

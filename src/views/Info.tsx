@@ -5,7 +5,6 @@ import { Mole } from "../gameComponents/Mole";
 import { GameCtx } from "../context/GameContext";
 import { SfxCtx } from "../context/SfxContext";
 
-
 const Wrapper = styled(WrapperBase)`
   display: flex;
   align-items: center;

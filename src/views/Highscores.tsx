@@ -26,8 +26,8 @@ export const Highscores = () => {
 
   return (
     <Wrapper>
-      {highscores.map((score) => (
-        <div>{score.nickname} {score.score}</div>
+      {highscores.map((score, index) => (
+        <div key={index}>{score.nickname} {score.score}</div>
       ))}
     </Wrapper>
   );

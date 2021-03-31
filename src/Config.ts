@@ -11,6 +11,8 @@ export interface ConfigInterface {
   badClickPoints: number;
   goodClickPoints: number;
   maxComboFactor: number;
+  apiUrl: string;
+  encryptionKey: string;
 };
 
 let Config = {} as ConfigInterface;

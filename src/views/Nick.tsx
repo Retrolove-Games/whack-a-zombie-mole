@@ -1,4 +1,10 @@
-import React, { useContext, useState, useEffect, useRef, InputHTMLAttributes } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  InputHTMLAttributes,
+} from "react";
 import styled from "styled-components/macro";
 import Trophy from "../assets/trophy.png";
 import * as easings from "d3-ease";
@@ -6,6 +12,7 @@ import { useSpring, animated, AnimatedValue } from "react-spring";
 import { Image } from "../components/Image";
 import { WrapperBase } from "../styledComponents";
 import { GameCtx } from "../context/GameContext";
+import { sendScore } from "../api/Api";
 
 const Wrapper = styled(WrapperBase)`
   display: flex;
@@ -83,6 +90,21 @@ export const Nick = () => {
 
   const handleSubmit = () => {
     localStorage.setItem("nickname", nickname);
+    sendScore(
+      {
+        nickname,
+        score: state.points,
+      },
+      "whack-a-zombie-mole"
+    )
+      .then((data) => {
+        console.log(data);
+        dispatch({ type: "CHANGE_SCREEN", screen: "menu" });
+      })
+      .catch((e) => {
+        alert("Sorry, something went wrong :/");
+        console.log(e);
+      });
   };
 
   return (

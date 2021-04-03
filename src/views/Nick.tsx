@@ -132,9 +132,9 @@ export const Nick = () => {
             spellCheck="false"
             maxLength={10}
           />
-          {saving
-            ? <BlinkInfo>Saving</BlinkInfo>
-            : <Button type="button" onClick={handleSubmit}>OK</Button>
+          <Button type="button" onClick={handleSubmit} disabled={saving}>OK</Button>
+          {saving &&
+            <BlinkInfo>Please wait, saving...</BlinkInfo>
           }
         </div>
       </Container>

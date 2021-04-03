@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import styled from "styled-components/macro";
 import Trophy from "../assets/trophy.png";
+import { BlinkInfo } from "../components/BlinkInfo";
 import * as easings from "d3-ease";
 import { useSpring, animated, AnimatedValue } from "react-spring";
 import { Image } from "../components/Image";
@@ -72,6 +73,7 @@ export const Nick = () => {
   const { dispatch, state } = useContext(GameCtx);
   const [nickname, setNickname] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [saving, setSaving] = useState(false);
   const spring = useSpring({
     from: { val: 0 },
     to: { val: state.points },
@@ -90,6 +92,7 @@ export const Nick = () => {
 
   const handleSubmit = () => {
     localStorage.setItem("nickname", nickname);
+    setSaving(true);
     sendScore(
       {
         nickname,
@@ -101,6 +104,7 @@ export const Nick = () => {
         dispatch({ type: "CHANGE_SCREEN", screen: "highscores" });
       })
       .catch((e) => {
+        setSaving(false);
         alert("Sorry, something went wrong :/");
         console.log(e);
       });
@@ -128,9 +132,10 @@ export const Nick = () => {
             spellCheck="false"
             maxLength={10}
           />
-          <Button type="button" onClick={handleSubmit}>
-            OK
-          </Button>
+          {saving
+            ? <BlinkInfo>Saving</BlinkInfo>
+            : <Button type="button" onClick={handleSubmit}>OK</Button>
+          }
         </div>
       </Container>
       <p>{state.nickname}</p>

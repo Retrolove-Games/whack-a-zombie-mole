@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useState,
-  useEffect,
-  useRef,
-  InputHTMLAttributes,
-} from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import styled from "styled-components/macro";
 import Trophy from "../assets/trophy.png";
 import { BlinkInfo } from "../components/BlinkInfo";
@@ -132,10 +126,10 @@ export const Nick = () => {
             spellCheck="false"
             maxLength={10}
           />
-          <Button type="button" onClick={handleSubmit} disabled={saving}>OK</Button>
-          {saving &&
-            <BlinkInfo>Please wait, saving...</BlinkInfo>
-          }
+          <Button type="button" onClick={handleSubmit} disabled={saving}>
+            OK
+          </Button>
+          {saving && <BlinkInfo>Please wait, saving...</BlinkInfo>}
         </div>
       </Container>
       <p>{state.nickname}</p>

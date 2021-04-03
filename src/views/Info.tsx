@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled, { keyframes } from "styled-components/macro";
+import styled from "styled-components/macro";
 import { WrapperBase } from "../styledComponents";
 import { Mole } from "../gameComponents/Mole";
+import { BlinkInfo } from "../components/BlinkInfo";
 import { GameCtx } from "../context/GameContext";
 import { SfxCtx } from "../context/SfxContext";
 
@@ -11,12 +12,6 @@ const Wrapper = styled(WrapperBase)`
   justify-content: center;
   position: relative;
   overflow: hidden;
-`;
-
-const blink = keyframes`
-  to {
-    visibility: hidden;
-  }
 `;
 
 const InfoBox = styled.div`
@@ -30,10 +25,6 @@ const InfoBox = styled.div`
     grid-column-start: 1;
     grid-column-end: 13;
     text-align: center;
-  }
-
-  .footer {
-    animation: ${blink} 0.75s steps(2, start) infinite;
   }
 
   .sprite {
@@ -52,13 +43,13 @@ const InfoBox = styled.div`
 
 export const Info = () => {
   const { dispatch, state } = useContext(GameCtx);
-  const [display, setDisplay] = useState(false);
+  const [display, setDisplay] = useState(true);
   const { playSfx } = useContext(SfxCtx);
 
   useEffect(() => {
     const gameHeartbeat = setTimeout(() => {
       setDisplay(!display);
-    }, 1000);
+    }, 800);
 
     return () => {
       clearTimeout(gameHeartbeat);
@@ -100,7 +91,9 @@ export const Info = () => {
           <br />
           with ladies!
         </div>
-        <div className="footer">CLICK TO START</div>
+        <div className="footer">
+          <BlinkInfo>CLICK TO START</BlinkInfo>
+        </div>
       </InfoBox>
     </Wrapper>
   );

@@ -8,6 +8,7 @@ import { Image } from "../components/Image";
 import { WrapperBase } from "../styledComponents";
 import { GameCtx } from "../context/GameContext";
 import { sendScore } from "../api/Api";
+import Config from "../Config";
 
 const Wrapper = styled(WrapperBase)`
   display: flex;
@@ -49,7 +50,7 @@ const Input = styled.input`
   text-align: center;
   color: var(--color-text);
   cursor: var(--cursor), auto;
-  width: 100px;
+  width: 140px;
 `;
 
 const Button = styled.button`
@@ -66,6 +67,13 @@ const Button = styled.button`
     background-color: var(--color-hover);
   }
 `;
+
+const normalizeInput = (input: string): string => {
+  return input.replace(
+    /[^A-Za-z 0-9 \.,\?""!@#\$%\^&\*\(\)-_=\+;:<>\/\\\|\}\{\[\]`~]*/g,
+    ""
+  );
+}
 
 export const Nick = () => {
   const { dispatch, state } = useContext(GameCtx);
@@ -89,11 +97,14 @@ export const Nick = () => {
   }, []);
 
   const handleSubmit = () => {
-    localStorage.setItem("nickname", nickname);
+    let standarizedNickname = nickname.substring(0, Config.maxNickLenght);
+    standarizedNickname = normalizeInput(standarizedNickname);
+
+    localStorage.setItem("nickname", standarizedNickname);
     setSaving(true);
     sendScore(
       {
-        nickname,
+        nickname: standarizedNickname,
         score: state.points,
       },
       "whack-a-zombie-mole"
@@ -123,17 +134,21 @@ export const Nick = () => {
         <div className="form">
           <Input
             type="text"
-            onChange={(e) => setNickname(e.target.value)}
+            onChange={(e) => setNickname(normalizeInput(e.target.value))}
             value={nickname}
             autoComplete="off"
             ref={inputRef}
             spellCheck="false"
-            maxLength={10}
+            maxLength={Config.maxNickLenght}
           />
           <Button type="button" onClick={handleSubmit} disabled={saving}>
             OK
           </Button>
-          {saving && <Info><BlinkInfo>Please wait, saving...</BlinkInfo></Info>}
+          {saving && (
+            <Info>
+              <BlinkInfo>Please wait, saving...</BlinkInfo>
+            </Info>
+          )}
         </div>
       </Container>
       <p>{state.nickname}</p>

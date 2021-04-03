@@ -7,10 +7,57 @@ import { GameCtx } from "../context/GameContext";
 import { getScores, scoreInterface } from "../api/Api";
 
 const Wrapper = styled(WrapperBase)`
-  display: flex;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+  text-align: center;
+  padding: 15px 20px 0 20px;
+  box-sizing: border-box;
+`;
+
+const Title = styled.h1`
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  color: #a8843c;
+`;
+
+const LoadingInfo = styled.div`
+  padding: 40px 0 0 0;
+`;
+
+const ScoreList = styled.table`
+  text-align: left;
+  width: 100%;
+  margin-bottom: 10px;
+
+  tr {
+    th {
+      padding-bottom: 5px;
+      color: #b4586c;
+    }
+
+    td {
+      padding-bottom: 5px;
+    }
+
+    th:nth-of-type(1) {
+      width: 30%;
+      text-align: center;
+    }
+
+    th:nth-of-type(2) {
+      width: 40%;
+    }
+
+    th:nth-of-type(3) {
+      text-align: center;
+    }
+
+    td:nth-of-type(1) {
+      text-align: center;
+    }
+
+    td:nth-of-type(3) {
+      text-align: center;
+    }
+  }
 `;
 
 export const Highscores = () => {
@@ -35,14 +82,30 @@ export const Highscores = () => {
         playSfx("start");
       }}
     >
-      {highscores.map((score, index) => (
-        <div key={index}>
-          {score.nickname} {score.score}
+      <Title>Hall of fame!</Title>
+      <ScoreList>
+        <tr>
+          <th>Rank</th>
+          <th>Nick</th>
+          <th>Points</th>
+        </tr>
+        {highscores.map((score, index) => (
+          <tr key={index}>
+            <td>{index + 1}</td>
+            <td>{score.nickname}</td>
+            <td>{score.score}</td>
+          </tr>
+        ))}
+      </ScoreList>
+      {highscores.length === 0 ? (
+        <LoadingInfo>
+          <BlinkInfo>Loading scores...</BlinkInfo>
+        </LoadingInfo>
+      ) : (
+        <div className="footer">
+          <BlinkInfo>CLICK TO RESTART</BlinkInfo>
         </div>
-      ))}
-      <div className="footer">
-        <BlinkInfo>CLICK TO RESTART</BlinkInfo>
-      </div>
+      )}
     </Wrapper>
   );
 };

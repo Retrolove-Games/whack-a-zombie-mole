@@ -20,6 +20,40 @@ const GameGrid = styled.div`
   padding: 0 10px;
 `;
 
+const TopGui = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+  padding: 5px 5px 10px 5px;
+
+  .time {
+    display: inline-block;
+    min-width: 25px;
+  }
+
+  > :first-child {
+    text-align: left;
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+  }
+
+  > :last-child {
+    text-align: right;
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+  }
+`;
+
+const BottomGui = styled.div`
+  text-align: center;
+  padding: 10px 0 0 0;
+`;
+
 const {
   initialGameSpeed,
   gameElements,
@@ -135,11 +169,10 @@ export const Game = () => {
 
   return (
     <Wrapper>
-      <p>Score: {state.points}</p>
-      <p>Time: {time}</p>
-      <p>
-        Combo factor: {comboFactor} / Speed: {speed}
-      </p>
+      <TopGui>
+        <div>Score: {state.points}</div>
+        <div>Time: <span className="time">{time}</span></div>
+      </TopGui>
       <GameGrid>
         {gameElements.map((item, index) => (
           <Mole
@@ -180,6 +213,7 @@ export const Game = () => {
           />
         ))}
       </GameGrid>
+      <BottomGui>Combo: { comboFactor }x</BottomGui>
     </Wrapper>
   );
 };

@@ -8,7 +8,7 @@ import { getScores, scoreInterface } from "../api/Api";
 
 const Wrapper = styled(WrapperBase)`
   text-align: center;
-  padding: 15px 20px 0 20px;
+  padding: 10px 10px 0 10px;
   box-sizing: border-box;
 `;
 
@@ -16,6 +16,7 @@ const Title = styled.h1`
   text-transform: uppercase;
   margin-bottom: 15px;
   color: #a8843c;
+  font-size: 2em;
 `;
 
 const LoadingInfo = styled.div`
@@ -25,7 +26,7 @@ const LoadingInfo = styled.div`
 const ScoreList = styled.table`
   text-align: left;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 
   tr {
     th {
@@ -82,7 +83,7 @@ export const Highscores = () => {
         playSfx("start");
       }}
     >
-      <Title>Hall of fame!</Title>
+      <Title>* Hall of fame! *</Title>
       <ScoreList>
         <tr>
           <th>Rank</th>

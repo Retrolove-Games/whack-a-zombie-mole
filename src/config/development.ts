@@ -4,7 +4,7 @@ export default {
   gameSpeedup: 20,
   speedupFactor: 5,
   maximumSpeed: 600,
-  timeLimit: 10,
+  timeLimit: 90,
   badClickPoints: 10,
   goodClickPoints: 10,
   maxComboFactor: 4,

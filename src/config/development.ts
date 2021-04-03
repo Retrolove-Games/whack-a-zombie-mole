@@ -9,5 +9,6 @@ export default {
   goodClickPoints: 10,
   maxComboFactor: 4,
   apiUrl: "https://t669nm1op0.execute-api.eu-central-1.amazonaws.com/production",
-  encryptionKey: "18857d4ac471fa9c522134e206e1bb06"
+  encryptionKey: "18857d4ac471fa9c522134e206e1bb06",
+  maxNickLenght: 15,
 };

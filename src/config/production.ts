@@ -9,5 +9,6 @@ export default {
   goodClickPoints: 10,
   maxComboFactor: 4,
   apiUrl: "http://localhost:3000",
-  encryptionKey: "0de7868ccda74f4b03f21c3ffdb6c80b"
+  encryptionKey: "0de7868ccda74f4b03f21c3ffdb6c80b",
+  maxNickLenght: 15,
 };

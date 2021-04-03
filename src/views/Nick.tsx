@@ -17,6 +17,10 @@ const Wrapper = styled(WrapperBase)`
   padding-top: 30px;
 `;
 
+const Info = styled.div`
+  margin-top: 20px;
+`;
+
 const Container = styled.div`
   text-align: center;
 
@@ -129,7 +133,7 @@ export const Nick = () => {
           <Button type="button" onClick={handleSubmit} disabled={saving}>
             OK
           </Button>
-          {saving && <BlinkInfo>Please wait, saving...</BlinkInfo>}
+          {saving && <Info><BlinkInfo>Please wait, saving...</BlinkInfo></Info>}
         </div>
       </Container>
       <p>{state.nickname}</p>

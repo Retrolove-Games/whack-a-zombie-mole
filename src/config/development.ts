@@ -8,6 +8,6 @@ export default {
   badClickPoints: 10,
   goodClickPoints: 10,
   maxComboFactor: 4,
-  apiUrl: "http://localhost:3000",
-  encryptionKey: "0de7868ccda74f4b03f21c3ffdb6c80b"
+  apiUrl: "https://t669nm1op0.execute-api.eu-central-1.amazonaws.com/production",
+  encryptionKey: "18857d4ac471fa9c522134e206e1bb06"
 };

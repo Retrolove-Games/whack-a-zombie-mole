@@ -68,7 +68,14 @@ export const Menu = () => {
           </Button>
         </li>
         <li>
-          <Button onClick={() => playSfx("menu")}>Highscores</Button>
+          <Button
+            onClick={() => {
+              playSfx("menu");
+              dispatch({ type: "CHANGE_SCREEN", screen: "highscores" });
+            }}
+          >
+            Highscores
+          </Button>
         </li>
       </MenuContainer>
     </Wrapper>

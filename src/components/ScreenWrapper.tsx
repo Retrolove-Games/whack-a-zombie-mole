@@ -20,13 +20,23 @@ const Background = styled.div`
 `;
 
 const Screen = styled.div`
+  --scale-factor: 1;
+
+  @media (min-width: 1024px) {
+    --scale-factor: 2;
+  }
+
+  @media (min-width: 1366px) {
+    --scale-factor: 3;
+  }
+
   transform: scale(var(--scale-factor, 2));
 `;
 
 export const ScreenWrapper = ({ children }: Props) => {
   return (
     <Background>
-      <Screen style={{'--scale-factor': 3} as React.CSSProperties}>
+      <Screen>
         {children}
       </Screen>
     </Background>

@@ -53,6 +53,10 @@ const Input = styled.input`
   width: 130px;
   border-bottom: solid 1px White;
   margin-right: 5px;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-user-select: text !important;
+  user-select: text !important;
 `;
 
 const Button = styled.button`
@@ -105,6 +109,7 @@ export const Nick = () => {
 
     if (standarizedNickname.length === 0) {
       setInputError(true);
+      if (inputRef.current) inputRef.current.focus();
       return false;
     }
 
@@ -145,7 +150,7 @@ export const Nick = () => {
           <Input
             type="text"
             onChange={(e) => setNickname(normalizeInput(e.target.value))}
-            value={nickname}
+            defaultValue={nickname}
             autoComplete="off"
             ref={inputRef}
             spellCheck="false"

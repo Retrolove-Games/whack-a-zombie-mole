@@ -26,3 +26,7 @@ yarn-error.log*
 *Zone.Identifier
 Thumbs.db:encryptable
 Thumbs.db
+
+# config files
+src/config/development.ts
+src/config/production.ts

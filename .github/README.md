@@ -22,6 +22,35 @@ I've used a very simple wave generator written in JS. Check its documentation [h
 The whole game is written in `React` and it's typed using `Typescript`.
 
 ---
+## Config files
+
+In order to compile this game, you need to create two config files:
+
+* `src/config/production.ts`
+* `src/config/development.ts`
+
+Using following format: 
+
+```js
+export default {
+  gameElements: 12,
+  initialGameSpeed: 900,
+  gameSpeedup: 20,
+  speedupFactor: 5,
+  maximumSpeed: 600,
+  timeLimit: 90,
+  badClickPoints: 10,
+  goodClickPoints: 10,
+  maxComboFactor: 4,
+  apiUrl: "[score api url]",
+  encryptionKey: "[encryption key]",
+  maxNickLenght: 15,
+};
+```
+
+You can run local score API using [this](https://github.com/Retrolove-Games/node-score-api) repo.
+
+---
 
 ## Available Scripts
 

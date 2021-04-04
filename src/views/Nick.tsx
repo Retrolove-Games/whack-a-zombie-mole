@@ -50,7 +50,9 @@ const Input = styled.input`
   text-align: center;
   color: var(--color-text);
   cursor: var(--cursor), auto;
-  width: 140px;
+  width: 130px;
+  border-bottom: solid 1px White;
+  margin-right: 5px;
 `;
 
 const Button = styled.button`
@@ -80,6 +82,7 @@ export const Nick = () => {
   const [nickname, setNickname] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const [saving, setSaving] = useState(false);
+  const [inputError, setInputError] = useState(false);
   const spring = useSpring({
     from: { val: 0 },
     to: { val: state.points },
@@ -99,6 +102,13 @@ export const Nick = () => {
   const handleSubmit = () => {
     let standarizedNickname = nickname.substring(0, Config.maxNickLenght);
     standarizedNickname = normalizeInput(standarizedNickname);
+
+    if (standarizedNickname.length === 0) {
+      setInputError(true);
+      return false;
+    }
+
+    setInputError(false);
 
     localStorage.setItem("nickname", standarizedNickname);
     setSaving(true);
@@ -144,6 +154,11 @@ export const Nick = () => {
           <Button type="button" onClick={handleSubmit} disabled={saving}>
             OK
           </Button>
+          {inputError && (
+            <Info>
+              Please enter at least two letters!
+            </Info>
+          )}
           {saving && (
             <Info>
               <BlinkInfo>Please wait, saving...</BlinkInfo>

@@ -19,9 +19,9 @@ You can play this game on the [itch.io](https://retrolove.itch.io/whack-a-zombie
 
 I've used a very simple wave generator written in JS. Check its documentation [here](https://github.com/grumdrig/jsfxr) and test it using a [generator](https://sfxr.me/).
 
-### Game egine
+### Game engine
 
-The whole game is written in `React` and it's typed using `Typescript`.
+The whole game is written in `React`, and it's typed using `Typescript`.
 
 ---
 ## Config files

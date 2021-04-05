@@ -5,6 +5,8 @@
 
 Game written in `React` to train up some skills.
 
+You can play this game on the [itch.io](https://retrolove.itch.io/whack-a-zombie-mole).
+
 ## Component structure
 
 ![Component structure](draw-a-zombie-mole.png)

@@ -9,28 +9,20 @@ const Background = styled.div`
   width: 100%;
   height: 100vh;
   background-color: Blue;
+  
   display: flex;
   align-items: center;
   justify-content: center;
   
-
   > * {
     cursor: var(--cursor), auto;
   }
 `;
 
 const Screen = styled.div`
-  --scale-factor: 1;
-
-  @media (min-width: 1024px) {
-    --scale-factor: 2;
-  }
-
-  @media (min-width: 1366px) {
-    --scale-factor: 3;
-  }
-
-  transform: scale(var(--scale-factor, 2));
+  width: 960px;
+  height: 630px;
+  overflow: hidden;
 `;
 
 export const ScreenWrapper = ({ children }: Props) => {

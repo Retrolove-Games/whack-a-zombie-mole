@@ -18,6 +18,8 @@ const Wrapper = styled.div`
   height: var(--native-height);
   background-color: var(--color-background);
   color: var(--color-text);
+  transform: scale(3);
+  transform-origin: top left;
 `;
 
 const sfxEngine = new SFX();

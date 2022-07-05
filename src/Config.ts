@@ -13,6 +13,7 @@ export interface ConfigInterface {
   maxComboFactor: number;
   apiUrl: string;
   encryptionKey: string;
+  iv: string;
   maxNickLenght: number;
 };
 

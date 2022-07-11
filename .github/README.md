@@ -1,5 +1,7 @@
 
-<img src="logo-retrolove-black.svg" width="400">
+## Retropia Games presents:
+
+--- 
 
 # Whack a Zombie Mole
 

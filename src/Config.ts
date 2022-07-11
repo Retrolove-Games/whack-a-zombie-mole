@@ -15,6 +15,7 @@ export interface ConfigInterface {
   encryptionKey: string;
   iv: string;
   maxNickLenght: number;
+  projectName: string;
 };
 
 let Config = {} as ConfigInterface;

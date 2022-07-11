@@ -5,6 +5,7 @@ import { WrapperBase } from "../styledComponents";
 import { SfxCtx } from "../context/SfxContext";
 import { GameCtx } from "../context/GameContext";
 import { getScores, scoreInterface } from "../api/Api";
+import Config from "../Config";
 
 const Wrapper = styled(WrapperBase)`
   text-align: center;
@@ -67,7 +68,7 @@ export const Highscores = () => {
   const [highscores, setHighscores] = useState<Array<scoreInterface>>([]);
 
   useEffect(() => {
-    getScores("whack-a-zombie-mole").then((response) => {
+    getScores(Config.projectName).then((response) => {
       if (response.ok) {
         response.json().then((data) => {
           setHighscores(data as Array<scoreInterface>);

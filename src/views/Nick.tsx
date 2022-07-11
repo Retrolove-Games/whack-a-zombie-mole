@@ -122,7 +122,7 @@ export const Nick = () => {
         nickname: standarizedNickname,
         score: state.points,
       },
-      "whack-a-zombie-mole"
+      Config.projectName
     )
       .then((data) => {
         dispatch({ type: "CHANGE_SCREEN", screen: "highscores" });

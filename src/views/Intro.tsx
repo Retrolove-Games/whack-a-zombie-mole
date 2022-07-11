@@ -4,7 +4,7 @@ import { WrapperBase } from "../styledComponents";
 import {useSpring, animated} from "react-spring";
 import * as easings from "d3-ease";
 import { Image } from "../components/Image";
-import Logo from "../assets/logo-retrolove.png";
+import Logo from "../assets/logo-retropia.png";
 import { GameCtx } from "../context/GameContext";
 
 const Wrapper = styled(WrapperBase)`
@@ -20,7 +20,7 @@ export const Intro = () => {
 
   const logoAnimation = useSpring({
     from: { top: "-140px" },
-    to: { top: "0" },
+    to: { top: "-20px" },
     config: { easing: easings.easeCubic, duration: 2500 },
     onRest: () => {
       // This hack eliminates problem with multiple onRest events.
@@ -35,7 +35,7 @@ export const Intro = () => {
   return (
     <Wrapper>
       <animated.div style={{...logoAnimation, position: "relative"}}>
-        <Image src={Logo} alt="" width="140" height="31" />
+        <Image src={Logo} alt="" width="228" height="76" />
       </animated.div>
     </Wrapper>
   );

@@ -1,6 +1,6 @@
 {
   "name": "whack-a-zombie-mole",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "homepage": ".",
   "dependencies": {

@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-anonymous-default-export
+/* eslint-disable import/no-anonymous-default-export */
 export default {
   gameElements: 12,
   initialGameSpeed: 900,
@@ -9,10 +9,13 @@ export default {
   badClickPoints: 10,
   goodClickPoints: 10,
   maxComboFactor: 4,
-  apiUrl: "http://localhost",
-  // Key 32 chars HEX
-  encryptionKey: "0123456789abcdef0123456789abcdef",
-  // IV 32 chars HEX
-  iv: "abcdef9876543210abcdef9876543210",
   maxNickLenght: 15,
+
+  // Highscore API
+  apiUrl: "localhost",
+  projectName: "whack-a-zombie-mole-dev",
+  // Key 32 chars HEX
+  encryptionKey: "",
+  // IV 32 chars HEX
+  iv: "",
 };
